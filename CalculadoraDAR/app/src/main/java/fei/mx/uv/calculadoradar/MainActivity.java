@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickGenerico(View v) {
+
         switch (v.getId()) {
             case R.id.button0:
                 valorPantalla += "0";
