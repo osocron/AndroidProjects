@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="fei.mx.uv.conversordivisas.MainActivity">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:layout_marginTop="29dp"
+        android:id="@+id/editTextInput"
+        style="@style/AppTheme"
+        android:textAlignment="center"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/conversor_de_divisas_dar"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:id="@+id/textView"
+        android:labelFor="@+id/editTextInput"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="13dp"
+        android:layout_alignParentEnd="true" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_marginTop="18dp"
+        android:layout_below="@+id/textViewResultado"
+        android:layout_alignParentEnd="true"
+        android:entries="@array/opciones"/>
+
+    <Button
+        android:text="@string/convertir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:id="@+id/buttonConvertir"
+        style="@style/AppTheme"
+        android:background="@drawable/ripple_effect"
+        android:textColor="@color/colorPrimary"
+        android:onClick="onClickButton"
+        android:textSize="24sp"
+        android:layout_below="@+id/spinner"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:elevation="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewResultado"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:layout_below="@+id/editTextInput"
+        android:layout_marginTop="21dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>
