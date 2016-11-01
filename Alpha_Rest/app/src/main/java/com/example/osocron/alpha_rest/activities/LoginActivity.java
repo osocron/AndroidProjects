@@ -1,8 +1,9 @@
-package com.example.osocron.alpha_rest;
+package com.example.osocron.alpha_rest.activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,9 +18,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.osocron.alpha_rest.R;
 import com.example.osocron.alpha_rest.data.remote.SampleAPI;
-import com.example.osocron.alpha_rest.model.Account;
-import com.example.osocron.alpha_rest.model.Response;
+import com.example.osocron.alpha_rest.model.OAuthResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,15 +36,16 @@ public class LoginActivity extends AppCompatActivity {
     private View mProgressView;
     private View mLoginFormView;
     private LoginActivity mContext;
+    private OAuthResponse oAuthResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mEmailView = (AutoCompleteTextView) findViewById(R.id.client_id);
         mContext = LoginActivity.this;
-        mPasswordView = (EditText) findViewById(R.id.password);
+        mPasswordView = (EditText) findViewById(R.id.client_secret);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -55,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        Button mEmailSignInButton = (Button) findViewById(R.id.authenticate_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,29 +82,29 @@ public class LoginActivity extends AppCompatActivity {
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        String client_id = mEmailView.getText().toString();
+        String client_secret = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (TextUtils.isEmpty(password)) {
+        if (TextUtils.isEmpty(client_secret)) {
             mPasswordView.setError(getString(R.string.error_field_required));
             focusView = mPasswordView;
             cancel = true;
-        } else if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        } else if (!TextUtils.isEmpty(client_secret) && !isPasswordValid(client_secret)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
 
         // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(client_id)) {
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
+        } else if (!isEmailValid(client_id)) {
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
@@ -119,10 +121,14 @@ public class LoginActivity extends AppCompatActivity {
 
             // Do network access.
             SampleAPI sampleAPI = SampleAPI.Factory.getIstance(mContext);
-            sampleAPI.login(new Account(email, password)).enqueue(new Callback<Response>() {
+            sampleAPI.oauth(client_id, client_secret, "client_credentials").enqueue(new Callback<OAuthResponse>() {
                 @Override
-                public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                    if (response.body().found){
+                public void onResponse(Call<OAuthResponse> call, retrofit2.Response<OAuthResponse> response) {
+                    if (response.body().tokenType.equals("Bearer")) {
+                        oAuthResponse = response.body();
+                        Intent intent = new Intent(mContext, ProveedoresActivity.class);
+                        intent.putExtra("com.example.osocron.alpha_rest.model.OAuthResponse", oAuthResponse);
+                        startActivity(intent);
                         finish();
                     } else {
                         mPasswordView.setError(getString(R.string.error_incorrect_password));
@@ -131,7 +137,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<Response> call, Throwable t) {
+                public void onFailure(Call<OAuthResponse> call, Throwable t) {
                     Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
@@ -140,7 +146,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+        return !email.isEmpty();
     }
 
     private boolean isPasswordValid(String password) {

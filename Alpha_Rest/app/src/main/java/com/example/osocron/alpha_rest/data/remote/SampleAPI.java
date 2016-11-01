@@ -3,6 +3,7 @@ package com.example.osocron.alpha_rest.data.remote;
 import android.content.Context;
 
 import com.example.osocron.alpha_rest.model.Account;
+import com.example.osocron.alpha_rest.model.OAuthResponse;
 import com.example.osocron.alpha_rest.model.Response;
 
 import java.util.concurrent.TimeUnit;
@@ -14,6 +15,8 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
@@ -24,6 +27,12 @@ public interface SampleAPI {
     //@GET("your_endpoint") Call<YOUR_POJO> getWeather(@Query("from") String from);
     @POST("api/login")
     Call<Response> login(@Body Account account);
+
+    @FormUrlEncoded
+    @POST("oauth/access_token")
+    Call<OAuthResponse> oauth(@Field("client_id") String clientID,
+                              @Field("client_secret") String clientSecret,
+                              @Field("grant_type") String grantType);
 
     class Factory {
         private static SampleAPI service;
