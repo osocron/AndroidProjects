@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Spinners, Dialogs e Intents</string>
+    <string name="textview">TextView</string>
+    <string name="materias">Materias</string>
+    <string name="registrar">Registrar</string>
+    <string-array name="carreras_array">
+        <item>Informatica</item>
+        <item>Tecnologias Computacionales</item>
+        <item>Ingenieria de Software</item>
+        <item>Redes y Servicios de Computo</item>
+    </string-array>
+</resources>

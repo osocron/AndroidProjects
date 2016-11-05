@@ -15,4 +15,5 @@ public class ProveedoresActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         OAuthResponse oAuthResponse = bundle.getParcelable("com.example.osocron.alpha_rest.model.OAuthResponse");
     }
+
 }

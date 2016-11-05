@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Formulario de Registro</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="nombres">Nombres</string>
+    <string name="telefono">Telefono</string>
+    <string name="ciudad">Ciudad</string>
+    <string name="tipo_de_comida_favorita">Tipo de Comida Favorita</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="email">Email</string>
+    <string-array name="ciudades">
+        <item>Xalapa</item>
+        <item>Veracruz</item>
+        <item>Coatepec</item>
+        <item>Banderilla</item>
+        <item>Xico</item>
+    </string-array>
+    <string-array name="comidas">
+        <item>Mexicana</item>
+        <item>China</item>
+        <item>Vegetariana</item>
+        <item>Rapida</item>
+    </string-array>
+</resources>
