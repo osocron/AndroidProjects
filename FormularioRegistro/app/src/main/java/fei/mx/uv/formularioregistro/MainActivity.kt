@@ -12,7 +12,7 @@ import android.widget.Spinner
 class MainActivity : AppCompatActivity() {
 
     /**
-     *  Programar sin modificar variables no imposible ;)
+     *  Programar sin modificar variables no es imposible ;)
      * */
 
     override fun onCreate(savedInstanceState: Bundle?) {
