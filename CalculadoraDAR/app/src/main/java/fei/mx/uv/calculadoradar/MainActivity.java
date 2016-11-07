@@ -78,10 +78,16 @@ public class MainActivity extends AppCompatActivity {
                 operacion = 1;
                 break;
             case R.id.buttonMult:
+                almacenarTemporal();
+                operacion = 2;
                 break;
             case R.id.buttonPlus:
+                almacenarTemporal();
+                operacion = 3;
                 break;
             case R.id.buttonSub:
+                almacenarTemporal();
+                operacion = 4;
                 break;
             case R.id.buttonEq:
                 hacerOperacion();
@@ -108,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                     case 1:
                         if (nuevoValor != 0.0) {
                             resultado = valorTemp / nuevoValor;
-                            valorPantalla = ""+resultado;
+                            valorPantalla = "" + resultado;
                         } else {
                             Toast.makeText(MainActivity.this,
                                     "No se puede dividir entre cero",
@@ -116,9 +122,17 @@ public class MainActivity extends AppCompatActivity {
                         }
                         break;
                     case 2:
+                        resultado = valorTemp * nuevoValor;
+                        valorPantalla = "" + resultado;
                         break;
-                    case 3: break;
-                    case 4: break;
+                    case 3:
+                        resultado = valorTemp + nuevoValor;
+                        valorPantalla = "" + resultado;
+                        break;
+                    case 4:
+                        resultado = valorTemp - nuevoValor;
+                        valorPantalla = "" + resultado;
+                        break;
                 }
             } catch (Exception e) {
                 e.printStackTrace();
