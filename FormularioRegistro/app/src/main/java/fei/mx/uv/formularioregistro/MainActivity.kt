@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                 "\nComida: " + valores[5] +
                 "\n\nEsta seguro de querer realizar el registro?"
         dialogo.setMessage(message)
-        dialogo.setButton(AlertDialog.BUTTON_POSITIVE, "Acepatar") { dialog, which -> startNewActivity(valores) }
+        dialogo.setButton(AlertDialog.BUTTON_POSITIVE, "Aceptar") { dialog, which -> startNewActivity(valores) }
         dialogo.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancelar") { dialog, which -> dialog.dismiss() }
         dialogo.show()
     }
