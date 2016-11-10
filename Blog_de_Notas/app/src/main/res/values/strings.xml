@@ -1,4 +1,9 @@
 <resources>
-    <string name="app_name">Blog_de_Notas</string>
+    <string name="app_name">Blog de Notas</string>
     <string name="nueva_nota">Nueva Nota</string>
+    <string name="editar_nota">Editar nota</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="guardar">Guardar</string>
+    <string name="ingresa_el_nombre_de_la_nota">Ingresa el nombre de la nota</string>
+    <string name="introduce_la_nota">Introduce la nota</string>
 </resources>
