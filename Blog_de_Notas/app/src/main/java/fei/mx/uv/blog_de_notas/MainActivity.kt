@@ -3,15 +3,15 @@ package fei.mx.uv.blog_de_notas
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.widget.ArrayAdapter
-import android.widget.Button
 import android.widget.ListView
 
 class MainActivity : AppCompatActivity() {
 
-    val agregarButton by lazy { findViewById(R.id.agregarNotaButton) as Button }
+    val agregarButton by lazy { findViewById(R.id.agregarNotaButton) as FloatingActionButton }
     val listaNotas by lazy { findViewById(R.id.notasListView) as ListView }
 
     override fun onCreate(savedInstanceState: Bundle?) {

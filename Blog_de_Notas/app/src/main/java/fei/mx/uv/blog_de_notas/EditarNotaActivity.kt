@@ -2,14 +2,14 @@ package fei.mx.uv.blog_de_notas
 
 import android.content.Context
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
-import android.widget.Button
 import android.widget.EditText
 
 class EditarNotaActivity : AppCompatActivity() {
 
-    val cancelarButton by lazy { findViewById(R.id.buttonCancelar) as Button }
-    val guardarButton by lazy { findViewById(R.id.buttonGuardar) as Button }
+    val cancelarButton by lazy { findViewById(R.id.buttonCancelar) as FloatingActionButton }
+    val guardarButton by lazy { findViewById(R.id.buttonGuardar) as FloatingActionButton }
     val editTextNombre by lazy { findViewById(R.id.editTextNombre) as EditText }
     val editTextNota by lazy { findViewById(R.id.editTextContenido) as EditText }
 
