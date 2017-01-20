@@ -11,19 +11,24 @@ class SearchClienteTask(val ctx: Context,
                         val adapter: ClientesBaseAdapter,
                         val repo: ClientesRepo,
                         val data: MutableList<Cliente>,
-                        val searchString: String) : AsyncTask<Unit, Unit, Unit>() {
+                        val searchString: String) : AsyncTask<Unit, Unit, Boolean>() {
 
-    override fun doInBackground(vararg p0: Unit): Unit {
-        data.clear()
+    override fun doInBackground(vararg p0: Unit): Boolean {
         val clientes = repo.searchQuery(searchString)
         if (clientes != null) {
-            data.addAll(clientes)
-        }
+            ctx.runOnUiThread {
+                data.clear()
+                data.addAll(clientes)
+            }
+            return true
+        } else return false
     }
 
-    override fun onPostExecute(result: Unit?) {
-        ctx.runOnUiThread {
-            adapter.notifyDataSetChanged()
+    override fun onPostExecute(result: Boolean) {
+        if (result) {
+            ctx.runOnUiThread {
+                adapter.notifyDataSetChanged()
+            }
         }
     }
 

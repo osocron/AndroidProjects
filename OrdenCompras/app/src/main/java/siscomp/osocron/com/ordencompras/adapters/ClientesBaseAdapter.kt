@@ -1,6 +1,7 @@
 package siscomp.osocron.com.ordencompras.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.BaseAdapter
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
+import siscomp.osocron.com.ordencompras.MainActivity
 import siscomp.osocron.com.ordencompras.R
 import siscomp.osocron.com.ordencompras.model.entities.Cliente
 
@@ -31,11 +33,24 @@ class ClientesBaseAdapter(val data: List<Cliente>, ctx: Context) : BaseAdapter()
             vh = view.tag as ListRowHolder
         }
 
+        val cliente: Cliente? = try {
+            data.get(position)
+        } catch (e: Exception) {
+            null
+        }
+
         vh.label.text = try {
-            data.get(position).nombre
+            cliente?.nombre
         } catch (e: Exception) {
             ""
         }
+
+        view?.setOnClickListener {
+            val intent = Intent(view.context, MainActivity::class.java)
+            intent.putExtra("claveCliente", cliente?.nombre)
+            view.context.startActivity(intent)
+        }
+
         return view
     }
 
