@@ -32,9 +32,9 @@ class ClientesRepo(val db: OrdenComprasDbHelper) : Repository<Cliente, String> {
     }
 
     fun searchQuery(s: String): List<Cliente>? {
-        return return db.use {
+        return db.use {
             val cursor = rawQuery("SELECT * FROM Clientes WHERE nombre LIKE '%$s%' LIMIT 50", arrayOf())
-            var list: MutableList<Cliente> = mutableListOf()
+            val list: MutableList<Cliente> = mutableListOf()
             while (cursor.moveToNext()) {
                 val clave = cursor.getString(0)
                 val nombre = cursor.getString(1)

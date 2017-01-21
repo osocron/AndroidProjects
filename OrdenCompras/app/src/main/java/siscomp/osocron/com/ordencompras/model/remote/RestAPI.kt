@@ -10,6 +10,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 import siscomp.osocron.com.ordencompras.model.entities.Cliente
+import siscomp.osocron.com.ordencompras.model.json.Articulo
+import siscomp.osocron.com.ordencompras.model.json.ArticuloDescr
 import siscomp.osocron.com.ordencompras.model.json.Empresas
 import siscomp.osocron.com.ordencompras.model.json.Mensaje
 
@@ -20,6 +22,12 @@ interface RestAPI {
 
     @GET("api/empresas")
     fun empresas(): Call<List<Empresas>>
+
+    @GET("api/articulos")
+    fun articulos(): Call<List<Articulo>>
+
+    @GET("api/articulosDescr")
+    fun articulosDescr(): Call<List<ArticuloDescr>>
 
     @FormUrlEncoded
     @POST("api/login")

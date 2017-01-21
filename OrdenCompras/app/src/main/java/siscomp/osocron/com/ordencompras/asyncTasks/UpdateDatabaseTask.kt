@@ -10,6 +10,7 @@ import siscomp.osocron.com.ordencompras.model.repositories.ClientesRepo
 class UpdateDatabaseTask(activity: ClientesActivity,
                          val clientesRepo: ClientesRepo,
                          val clientes: List<Cliente>) : AsyncTask<Void, Void, Unit>() {
+
     val dialog = ProgressDialog(activity)
 
     override fun onPreExecute() {

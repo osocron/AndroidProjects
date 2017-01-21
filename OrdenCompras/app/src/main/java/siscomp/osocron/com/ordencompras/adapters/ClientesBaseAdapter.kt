@@ -9,6 +9,7 @@ import android.widget.BaseAdapter
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
+import com.pixplicity.easyprefs.library.Prefs
 import siscomp.osocron.com.ordencompras.MainActivity
 import siscomp.osocron.com.ordencompras.R
 import siscomp.osocron.com.ordencompras.model.entities.Cliente
@@ -47,7 +48,10 @@ class ClientesBaseAdapter(val data: List<Cliente>, ctx: Context) : BaseAdapter()
 
         view?.setOnClickListener {
             val intent = Intent(view.context, MainActivity::class.java)
-            intent.putExtra("claveCliente", cliente?.nombre)
+            if (cliente != null && !cliente.clave.isEmpty())
+                Prefs.putString("clave_cliente", cliente.clave)
+            else
+                Prefs.putString("clave_cliente", "not_set")
             view.context.startActivity(intent)
         }
 

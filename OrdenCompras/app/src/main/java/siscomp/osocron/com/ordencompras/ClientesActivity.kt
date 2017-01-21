@@ -6,6 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
+import org.jetbrains.anko.db.*
 import siscomp.osocron.com.ordencompras.adapters.ClientesBaseAdapter
 import siscomp.osocron.com.ordencompras.asyncTasks.SearchClienteTask
 import siscomp.osocron.com.ordencompras.asyncTasks.UpdateClientTask
@@ -25,6 +26,10 @@ class ClientesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_clientes)
+        setUpAutoComplete()
+    }
+
+    private fun setUpAutoComplete() {
         val data: MutableList<Cliente> = mutableListOf()
         val adapter = ClientesBaseAdapter(data, this)
         autoComplete.setAdapter(adapter)
@@ -33,7 +38,8 @@ class ClientesActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) { }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val task = SearchClienteTask(this@ClientesActivity, adapter, clienteRepo, data, autoComplete.text.toString())
+                val task = SearchClienteTask(this@ClientesActivity,
+                        adapter, clienteRepo, data, autoComplete.text.toString())
                 task.execute()
             }
         })
