@@ -1,14 +1,24 @@
 package siscomp.osocron.com.ordencompras.model.remote
 
-import android.content.Context
+import retrofit2.Call
 
-/**
- * Created by osocron on 19/01/17.
- */
+
 interface RemoteRepository<T, I> {
 
-    fun getAll(): List<T>?
+    val getAllCall: Call<List<T>>
+
+    fun getAll(): List<T>? {
+        return callAction(getAllCall)
+    }
 
     fun getById(id: I): T?
+
+    fun callAction(call: Call<List<T>>): List<T>? {
+        try {
+            return call.execute().body()
+        } catch (e: Exception) {
+            return null
+        }
+    }
 
 }

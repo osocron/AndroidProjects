@@ -1,22 +1,21 @@
 package siscomp.osocron.com.ordencompras.model.remote
 
 import android.content.Context
-import siscomp.osocron.com.ordencompras.model.entities.Cliente
+import retrofit2.Call
+import siscomp.osocron.com.ordencompras.model.json.Cliente
 
 
 class ClienteRemoteRepo(val ctx: Context) : RemoteRepository<Cliente, String> {
 
-    override fun getAll(): List<Cliente>? {
-        val call = RestAPI.Factory.getIstance(ctx).clientes()
-        try {
-            return call.execute().body()
-        } catch (e: Exception) {
-            return null
-        }
-    }
+    override val getAllCall: Call<List<Cliente>>
+        get() = RestAPI.Factory.getIstance(ctx).clientes()
 
     override fun getById(id: String): Cliente? {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    fun getNuevos(fecha: String): List<Cliente>? {
+        return callAction(RestAPI.Factory.getIstance(ctx).nuevosClientes(fecha))
     }
 
 }

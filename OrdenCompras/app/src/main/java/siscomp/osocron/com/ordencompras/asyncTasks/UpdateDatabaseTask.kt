@@ -2,12 +2,16 @@ package siscomp.osocron.com.ordencompras.asyncTasks
 
 import android.app.ProgressDialog
 import android.os.AsyncTask
+import android.widget.Toast
+import com.pixplicity.easyprefs.library.Prefs
 import siscomp.osocron.com.ordencompras.ClientesActivity
 import siscomp.osocron.com.ordencompras.model.entities.Cliente
 import siscomp.osocron.com.ordencompras.model.repositories.ClientesRepo
+import java.sql.Date
+import java.util.*
 
 
-class UpdateDatabaseTask(activity: ClientesActivity,
+class UpdateDatabaseTask(val activity: ClientesActivity,
                          val clientesRepo: ClientesRepo,
                          val clientes: List<Cliente>) : AsyncTask<Void, Void, Unit>() {
 
@@ -25,9 +29,11 @@ class UpdateDatabaseTask(activity: ClientesActivity,
     }
 
     override fun onPostExecute(result: Unit?) {
+        Prefs.putString("last_cliente_update", Date(Calendar.getInstance().timeInMillis).toString())
         if (dialog.isShowing) {
             dialog.dismiss()
         }
+        Toast.makeText(activity, "Proceso finalizado", Toast.LENGTH_LONG).show()
     }
 
 }

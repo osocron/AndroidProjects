@@ -4,13 +4,13 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.os.AsyncTask
 import android.widget.Toast
+import siscomp.osocron.com.ordencompras.model.entities.Articulo
 import siscomp.osocron.com.ordencompras.model.json.ArticuloDescr
-import siscomp.osocron.com.ordencompras.model.remote.ArticulosDescrRemoteRepo
 import siscomp.osocron.com.ordencompras.model.repositories.ArticulosDescrRepo
 
 
 class UpdateArticulosDescrTask(val ctx: Context,
-                               val remoteRepo: ArticulosDescrRemoteRepo,
+                               val dataArticulos: List<Articulo>,
                                val articulosDescrRepo: ArticulosDescrRepo) : AsyncTask<Unit, Unit, List<ArticuloDescr>?>() {
 
     val dialog = ProgressDialog(ctx)
@@ -23,7 +23,7 @@ class UpdateArticulosDescrTask(val ctx: Context,
     }
 
     override fun doInBackground(vararg p0: Unit?): List<ArticuloDescr>? {
-        return remoteRepo.getAll()
+        return dataArticulos.map { ArticuloDescr(it.clave, it.descrgruma + ' ' + it.descripcio) }
     }
 
     override fun onPostExecute(result: List<ArticuloDescr>?) {

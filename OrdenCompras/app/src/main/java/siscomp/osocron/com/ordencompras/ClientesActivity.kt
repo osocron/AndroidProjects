@@ -6,7 +6,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
-import org.jetbrains.anko.db.*
 import siscomp.osocron.com.ordencompras.adapters.ClientesBaseAdapter
 import siscomp.osocron.com.ordencompras.asyncTasks.SearchClienteTask
 import siscomp.osocron.com.ordencompras.asyncTasks.UpdateClientTask

@@ -59,7 +59,7 @@ class ClientesBaseAdapter(val data: List<Cliente>, ctx: Context) : BaseAdapter()
     }
 
     override fun getItem(position: Int): Any {
-        return data.get(position)
+        return data[position]
     }
 
     override fun getItemId(position: Int): Long {

@@ -3,10 +3,13 @@ package siscomp.osocron.com.ordencompras.asyncTasks
 import android.app.ProgressDialog
 import android.os.AsyncTask
 import android.widget.Toast
+import com.pixplicity.easyprefs.library.Prefs
 import siscomp.osocron.com.ordencompras.ClientesActivity
-import siscomp.osocron.com.ordencompras.model.entities.Cliente
+import siscomp.osocron.com.ordencompras.model.json.Cliente
 import siscomp.osocron.com.ordencompras.model.repositories.ClientesRepo
 import siscomp.osocron.com.ordencompras.model.remote.ClienteRemoteRepo
+import java.sql.Date
+import java.util.*
 
 
 class UpdateClientTask(val activity: ClientesActivity,
@@ -23,7 +26,9 @@ class UpdateClientTask(val activity: ClientesActivity,
     }
 
     override fun doInBackground(vararg p0: Void?): List<Cliente>? {
-        return remoteRepo.getAll()
+        val fecha = Prefs.getString("last_cliente_update",
+                Date(Calendar.getInstance().timeInMillis).toString())
+        return remoteRepo.getNuevos(fecha)
     }
 
     override fun onPostExecute(result: List<Cliente>?) {
@@ -31,7 +36,8 @@ class UpdateClientTask(val activity: ClientesActivity,
             dialog.dismiss()
         }
         if (result != null) {
-            val task = UpdateDatabaseTask(activity, clienteRepo, result)
+            val d = result.map { toEntity(it) }
+            val task = UpdateDatabaseTask(activity, clienteRepo, d)
             task.execute()
         }
         else Toast.makeText(activity, "Error al obtener los datos", Toast.LENGTH_LONG).show()
@@ -42,6 +48,16 @@ class UpdateClientTask(val activity: ClientesActivity,
             dialog.dismiss()
         }
         Toast.makeText(activity, "Operacion cancelada", Toast.LENGTH_LONG).show()
+    }
+
+    fun toEntity(c: Cliente): siscomp.osocron.com.ordencompras.model.entities.Cliente {
+        return siscomp.osocron.com.ordencompras.model.entities.Cliente(c.clave,
+                c.nombre,
+                c.direccion,
+                c.nivel,
+                c.descuento,
+                c.telefono1,
+                c.telefono2)
     }
 
 }

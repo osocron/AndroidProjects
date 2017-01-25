@@ -43,7 +43,7 @@ class ClientesRepo(val db: OrdenComprasDbHelper) : Repository<Cliente, String> {
                 val descuento = cursor.getDouble(4)
                 val tele1 = cursor.getString(5)
                 val tele2 = cursor.getString(6)
-                val cliente = Cliente(clave, nombre, direccion, nivel, descuento, tele1, tele2)
+                val cliente = Cliente(clave, nombre, direccion, nivel, descuento.toFloat(), tele1, tele2)
                 list.add(cliente)
             }
             cursor.close()

@@ -45,6 +45,10 @@ public class Articulo {
     @Expose
     public float piezas;
 
+    @SerializedName("fechaactua")
+    @Expose
+    public String fechaactua;
+
     /**
      * No args constructor for use in serialization
      *
@@ -55,6 +59,7 @@ public class Articulo {
     /**
      *
      * @param descrgruma
+     * @param fechaactua
      * @param descripcio
      * @param barras3
      * @param umedida
@@ -65,7 +70,7 @@ public class Articulo {
      * @param clave
      * @param gravado
      */
-    public Articulo(String clave, String claverapid, String barras1, String barras2, String barras3, int gravado, String descrgruma, String descripcio, String umedida, float piezas) {
+    public Articulo(String clave, String claverapid, String barras1, String barras2, String barras3, int gravado, String descrgruma, String descripcio, String umedida, float piezas, String fechaactua) {
         super();
         this.clave = clave;
         this.claverapid = claverapid;
@@ -77,6 +82,7 @@ public class Articulo {
         this.descripcio = descripcio;
         this.umedida = umedida;
         this.piezas = piezas;
+        this.fechaactua = fechaactua;
     }
 
     @Override

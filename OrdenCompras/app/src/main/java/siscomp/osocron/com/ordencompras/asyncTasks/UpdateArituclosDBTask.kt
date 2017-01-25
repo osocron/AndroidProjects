@@ -3,8 +3,7 @@ package siscomp.osocron.com.ordencompras.asyncTasks
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.AsyncTask
-import siscomp.osocron.com.ordencompras.model.json.Articulo
-import siscomp.osocron.com.ordencompras.model.remote.ArticulosDescrRemoteRepo
+import siscomp.osocron.com.ordencompras.model.entities.Articulo
 import siscomp.osocron.com.ordencompras.model.repositories.ArticulosDescrRepo
 import siscomp.osocron.com.ordencompras.model.repositories.ArticulosRepo
 
@@ -12,7 +11,6 @@ import siscomp.osocron.com.ordencompras.model.repositories.ArticulosRepo
 class UpdateArituclosDBTask(val ctx: Context,
                             val articulosRepo: ArticulosRepo,
                             val articulos: List<Articulo>,
-                            val articulosDescrRemoteRepo: ArticulosDescrRemoteRepo,
                             val articulosDescrRepo: ArticulosDescrRepo) : AsyncTask<Void, Void, Unit>() {
 
     val dialog = ProgressDialog(ctx)
@@ -32,7 +30,7 @@ class UpdateArituclosDBTask(val ctx: Context,
         if (dialog.isShowing) {
             dialog.dismiss()
         }
-        val task = UpdateArticulosDescrTask(ctx, articulosDescrRemoteRepo, articulosDescrRepo)
+        val task = UpdateArticulosDescrTask(ctx, articulos, articulosDescrRepo)
         task.execute()
     }
 

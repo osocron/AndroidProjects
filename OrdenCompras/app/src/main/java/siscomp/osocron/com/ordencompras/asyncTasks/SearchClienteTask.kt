@@ -11,7 +11,7 @@ class SearchClienteTask(val ctx: Context,
                         val adapter: ClientesBaseAdapter,
                         val repo: ClientesRepo,
                         val data: MutableList<Cliente>,
-                        val searchString: String) : AsyncTask<Unit, Unit, Boolean>() {
+                        val searchString: String) : AsyncTask<Unit, Unit, Boolean>()     {
 
     override fun doInBackground(vararg p0: Unit): Boolean {
         val clientes = repo.searchQuery(searchString)
