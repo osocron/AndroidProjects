@@ -1,4 +1,4 @@
-package siscomp.osocron.com.ordencompras.asyncTasks
+package siscomp.osocron.com.ordencompras.asyncTasks.clientes
 
 import android.app.ProgressDialog
 import android.os.AsyncTask

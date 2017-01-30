@@ -7,8 +7,8 @@ import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import siscomp.osocron.com.ordencompras.adapters.ClientesBaseAdapter
-import siscomp.osocron.com.ordencompras.asyncTasks.SearchClienteTask
-import siscomp.osocron.com.ordencompras.asyncTasks.UpdateClientTask
+import siscomp.osocron.com.ordencompras.asyncTasks.clientes.SearchClienteTask
+import siscomp.osocron.com.ordencompras.asyncTasks.clientes.UpdateClientTask
 import siscomp.osocron.com.ordencompras.model.db.database
 import siscomp.osocron.com.ordencompras.model.entities.Cliente
 import siscomp.osocron.com.ordencompras.model.remote.ClienteRemoteRepo

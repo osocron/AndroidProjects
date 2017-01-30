@@ -1,4 +1,4 @@
-package siscomp.osocron.com.ordencompras.asyncTasks
+package siscomp.osocron.com.ordencompras.asyncTasks.articulosDescr
 
 import android.content.Context
 import android.os.AsyncTask

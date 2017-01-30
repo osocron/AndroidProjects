@@ -1,10 +1,12 @@
-package siscomp.osocron.com.ordencompras.asyncTasks
+package siscomp.osocron.com.ordencompras.asyncTasks.clientes
 
 import android.app.ProgressDialog
 import android.os.AsyncTask
 import android.widget.Toast
 import com.pixplicity.easyprefs.library.Prefs
 import siscomp.osocron.com.ordencompras.ClientesActivity
+import siscomp.osocron.com.ordencompras.asyncTasks.clientes.UpdateDatabaseTask
+import siscomp.osocron.com.ordencompras.model.entities.Cliente
 import siscomp.osocron.com.ordencompras.model.json.JsonCliente
 import siscomp.osocron.com.ordencompras.model.repositories.ClientesRepo
 import siscomp.osocron.com.ordencompras.model.remote.ClienteRemoteRepo
@@ -50,8 +52,8 @@ class UpdateClientTask(val activity: ClientesActivity,
         Toast.makeText(activity, "Operacion cancelada", Toast.LENGTH_LONG).show()
     }
 
-    fun toEntity(c: JsonCliente): siscomp.osocron.com.ordencompras.model.entities.Cliente {
-        return siscomp.osocron.com.ordencompras.model.entities.Cliente(c.clave,
+    fun toEntity(c: JsonCliente): Cliente {
+        return Cliente(c.clave,
                 c.nombre,
                 c.direccion,
                 c.nivel,

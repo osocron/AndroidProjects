@@ -1,17 +1,14 @@
-package siscomp.osocron.com.ordencompras.asyncTasks
+package siscomp.osocron.com.ordencompras.asyncTasks.articulosDescr
 
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.AsyncTask
 import android.widget.Toast
-import com.pixplicity.easyprefs.library.Prefs
 import siscomp.osocron.com.ordencompras.model.json.JsonArticuloDescr
 import siscomp.osocron.com.ordencompras.model.repositories.ArticulosDescrRepo
-import java.sql.Date
-import java.util.*
 
 
-class UpdateArticulosDescrDBTask(val ctx: Context,
+class OneTimerArticulosDescrTask(val ctx: Context,
                                  val articulosDescrRepo: ArticulosDescrRepo,
                                  val articulosDescrJson: List<JsonArticuloDescr>) : AsyncTask<Unit, Unit, Unit>() {
 
@@ -28,7 +25,6 @@ class UpdateArticulosDescrDBTask(val ctx: Context,
     }
 
     override fun onPostExecute(result: Unit?) {
-        Prefs.putString("last_articulos_update", Date(Calendar.getInstance().timeInMillis).toString())
         if (dialog.isShowing) {
             dialog.dismiss()
         }

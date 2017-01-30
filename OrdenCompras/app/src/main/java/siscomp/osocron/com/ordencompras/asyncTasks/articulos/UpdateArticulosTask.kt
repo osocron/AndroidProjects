@@ -1,24 +1,24 @@
-package siscomp.osocron.com.ordencompras.asyncTasks
+package siscomp.osocron.com.ordencompras.asyncTasks.articulos
 
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.AsyncTask
 import android.widget.Toast
 import com.pixplicity.easyprefs.library.Prefs
+import siscomp.osocron.com.ordencompras.model.db.OrdenComprasDbHelper
+import siscomp.osocron.com.ordencompras.model.entities.Articulo
 import siscomp.osocron.com.ordencompras.model.json.JsonArticulo
 import siscomp.osocron.com.ordencompras.model.remote.ArticulosRemoteRepo
-import siscomp.osocron.com.ordencompras.model.repositories.ArticulosDescrRepo
-import siscomp.osocron.com.ordencompras.model.repositories.ArticulosRepo
 import java.sql.Date
 import java.util.*
 
 
 class UpdateArticulosTask(val ctx: Context,
-                          val remoteRepo: ArticulosRemoteRepo,
-                          val repo: ArticulosRepo,
-                          val articulosDescrRepo: ArticulosDescrRepo) : AsyncTask<Unit, Unit, List<JsonArticulo>?>(){
+                          val database: OrdenComprasDbHelper) : AsyncTask<Unit, Unit, List<JsonArticulo>?>(){
 
     val dialog = ProgressDialog(ctx)
+    val remoteRepo = ArticulosRemoteRepo(ctx)
+
 
     override fun onPreExecute() {
         dialog.setMessage("Obteniendo datos...")
@@ -39,7 +39,7 @@ class UpdateArticulosTask(val ctx: Context,
         }
         if (result != null) {
             val data = result.map { toEntity(it) }
-            val task = UpdateArituclosDBTask(ctx, repo, data, articulosDescrRepo)
+            val task = UpdateArituclosDBTask(ctx, database, data)
             task.execute()
         }
         else Toast.makeText(ctx, "Error al obtener los datos", Toast.LENGTH_LONG).show()
@@ -52,8 +52,8 @@ class UpdateArticulosTask(val ctx: Context,
         Toast.makeText(ctx, "Operacion cancelada", Toast.LENGTH_LONG).show()
     }
 
-    fun toEntity(a: JsonArticulo): siscomp.osocron.com.ordencompras.model.entities.Articulo {
-        return siscomp.osocron.com.ordencompras.model.entities.Articulo(a.clave,
+    fun toEntity(a: JsonArticulo): Articulo {
+        return Articulo(a.clave,
                 a.claverapid,
                 a.barras1,
                 a.barras2,

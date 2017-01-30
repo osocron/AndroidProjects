@@ -35,6 +35,12 @@ interface RestAPI {
     @GET("api/articulos/nuevos/{fecha}")
     fun nuevosArticulos(@Path("fecha") fecha: String): Call<List<JsonArticulo>>
 
+    @GET("api/detallados")
+    fun detallados(): Call<List<JsonDetallad>>
+
+    @GET("api/detallados/{clave}")
+    fun detalladosPorClave(@Path("clave") clave: String): Call<List<JsonDetallad>>
+
     @FormUrlEncoded
     @POST("api/login")
     fun login(@Field("empresa") empresa: String,

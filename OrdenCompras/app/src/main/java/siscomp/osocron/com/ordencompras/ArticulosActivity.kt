@@ -11,8 +11,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import siscomp.osocron.com.ordencompras.adapters.ArticulosDescrBaseAdapter
-import siscomp.osocron.com.ordencompras.asyncTasks.SearchArticuloDescrTask
-import siscomp.osocron.com.ordencompras.asyncTasks.UpdateArticulosTask
+import siscomp.osocron.com.ordencompras.asyncTasks.articulosDescr.SearchArticuloDescrTask
+import siscomp.osocron.com.ordencompras.asyncTasks.articulos.UpdateArticulosTask
 import siscomp.osocron.com.ordencompras.model.db.database
 import siscomp.osocron.com.ordencompras.model.json.JsonArticuloDescr
 import siscomp.osocron.com.ordencompras.model.remote.ArticulosRemoteRepo
@@ -24,8 +24,6 @@ class ArticulosActivity : AppCompatActivity() {
 
     val SCANNER_RESULT_CODE = 0
 
-    val articulosRemoteRepo by lazy { ArticulosRemoteRepo(this) }
-    val articulosRepo by lazy { ArticulosRepo(database) }
     val articulosDescrRepo by lazy { ArticulosDescrRepo(database) }
 
     val searchFAB by lazy { findViewById(R.id.fabSearchArticulos) as FloatingActionButton }
@@ -37,6 +35,7 @@ class ArticulosActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setUpAutoComplete()
         searchFAB.setOnClickListener { searchArticulosButtonAction() }
+        //OneTimerDetalladTask(this@ArticulosActivity, DetalladRemoteRepo(this@ArticulosActivity), DetalladRepo(database)).execute()
     }
 
     private fun setUpAutoComplete() {
@@ -88,7 +87,7 @@ class ArticulosActivity : AppCompatActivity() {
     }
 
     private fun updateArticulos() {
-        val task = UpdateArticulosTask(this, articulosRemoteRepo, articulosRepo, articulosDescrRepo)
+        val task = UpdateArticulosTask(this, database)
         task.execute()
     }
 
