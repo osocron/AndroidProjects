@@ -5,7 +5,7 @@ import android.content.Context
 import android.os.AsyncTask
 import android.widget.Toast
 import com.pixplicity.easyprefs.library.Prefs
-import siscomp.osocron.com.ordencompras.model.json.Articulo
+import siscomp.osocron.com.ordencompras.model.json.JsonArticulo
 import siscomp.osocron.com.ordencompras.model.remote.ArticulosRemoteRepo
 import siscomp.osocron.com.ordencompras.model.repositories.ArticulosDescrRepo
 import siscomp.osocron.com.ordencompras.model.repositories.ArticulosRepo
@@ -16,7 +16,7 @@ import java.util.*
 class UpdateArticulosTask(val ctx: Context,
                           val remoteRepo: ArticulosRemoteRepo,
                           val repo: ArticulosRepo,
-                          val articulosDescrRepo: ArticulosDescrRepo) : AsyncTask<Unit, Unit, List<Articulo>?>(){
+                          val articulosDescrRepo: ArticulosDescrRepo) : AsyncTask<Unit, Unit, List<JsonArticulo>?>(){
 
     val dialog = ProgressDialog(ctx)
 
@@ -27,13 +27,13 @@ class UpdateArticulosTask(val ctx: Context,
         dialog.show()
     }
 
-    override fun doInBackground(vararg p0: Unit?): List<Articulo>? {
+    override fun doInBackground(vararg p0: Unit?): List<JsonArticulo>? {
         val fecha = Prefs.getString("last_articulos_update",
                 Date(Calendar.getInstance().timeInMillis).toString())
         return remoteRepo.getNuevos(fecha)
     }
 
-    override fun onPostExecute(result: List<Articulo>?) {
+    override fun onPostExecute(result: List<JsonArticulo>?) {
         if (dialog.isShowing) {
             dialog.dismiss()
         }
@@ -52,7 +52,7 @@ class UpdateArticulosTask(val ctx: Context,
         Toast.makeText(ctx, "Operacion cancelada", Toast.LENGTH_LONG).show()
     }
 
-    fun toEntity(a: Articulo): siscomp.osocron.com.ordencompras.model.entities.Articulo {
+    fun toEntity(a: JsonArticulo): siscomp.osocron.com.ordencompras.model.entities.Articulo {
         return siscomp.osocron.com.ordencompras.model.entities.Articulo(a.clave,
                 a.claverapid,
                 a.barras1,

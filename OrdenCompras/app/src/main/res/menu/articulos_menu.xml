@@ -3,4 +3,6 @@
 
     <item android:title="Actualizar datos"
         android:id="@+id/menuActualizarArticuos" />
+    <item android:title="Usar el Scanner"
+        android:id="@+id/mScanearArticulo" />
 </menu>

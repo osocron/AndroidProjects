@@ -5,7 +5,7 @@ import android.content.Context
 import android.os.AsyncTask
 import android.widget.Toast
 import com.pixplicity.easyprefs.library.Prefs
-import siscomp.osocron.com.ordencompras.model.json.ArticuloDescr
+import siscomp.osocron.com.ordencompras.model.json.JsonArticuloDescr
 import siscomp.osocron.com.ordencompras.model.repositories.ArticulosDescrRepo
 import java.sql.Date
 import java.util.*
@@ -13,7 +13,7 @@ import java.util.*
 
 class UpdateArticulosDescrDBTask(val ctx: Context,
                                  val articulosDescrRepo: ArticulosDescrRepo,
-                                 val articulosDescr: List<ArticuloDescr>) : AsyncTask<Unit, Unit, Unit>() {
+                                 val articulosDescrJson: List<JsonArticuloDescr>) : AsyncTask<Unit, Unit, Unit>() {
 
     val dialog = ProgressDialog(ctx)
 
@@ -24,7 +24,7 @@ class UpdateArticulosDescrDBTask(val ctx: Context,
     }
 
     override fun doInBackground(vararg p0: Unit?) {
-        articulosDescr.forEach { a -> articulosDescrRepo.insert(a) }
+        articulosDescrJson.forEach { a -> articulosDescrRepo.insert(a) }
     }
 
     override fun onPostExecute(result: Unit?) {

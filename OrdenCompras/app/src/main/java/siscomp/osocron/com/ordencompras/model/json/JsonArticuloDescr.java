@@ -3,7 +3,7 @@ package siscomp.osocron.com.ordencompras.model.json;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ArticuloDescr {
+public class JsonArticuloDescr {
 
     @SerializedName("clave")
     @Expose
@@ -16,7 +16,7 @@ public class ArticuloDescr {
      * No args constructor for use in serialization
      *
      */
-    public ArticuloDescr() {
+    public JsonArticuloDescr() {
     }
 
     /**
@@ -24,7 +24,7 @@ public class ArticuloDescr {
      * @param descripcion
      * @param clave
      */
-    public ArticuloDescr(String clave, String descripcion) {
+    public JsonArticuloDescr(String clave, String descripcion) {
         super();
         this.clave = clave;
         this.descripcion = descripcion;

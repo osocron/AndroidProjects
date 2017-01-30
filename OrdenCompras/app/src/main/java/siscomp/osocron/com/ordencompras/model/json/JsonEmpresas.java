@@ -3,7 +3,7 @@ package siscomp.osocron.com.ordencompras.model.json;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Empresas {
+public class JsonEmpresas {
 
     @SerializedName("clave")
     @Expose

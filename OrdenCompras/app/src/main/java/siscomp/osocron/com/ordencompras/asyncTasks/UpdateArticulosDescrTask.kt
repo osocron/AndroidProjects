@@ -5,13 +5,13 @@ import android.content.Context
 import android.os.AsyncTask
 import android.widget.Toast
 import siscomp.osocron.com.ordencompras.model.entities.Articulo
-import siscomp.osocron.com.ordencompras.model.json.ArticuloDescr
+import siscomp.osocron.com.ordencompras.model.json.JsonArticuloDescr
 import siscomp.osocron.com.ordencompras.model.repositories.ArticulosDescrRepo
 
 
 class UpdateArticulosDescrTask(val ctx: Context,
                                val dataArticulos: List<Articulo>,
-                               val articulosDescrRepo: ArticulosDescrRepo) : AsyncTask<Unit, Unit, List<ArticuloDescr>?>() {
+                               val articulosDescrRepo: ArticulosDescrRepo) : AsyncTask<Unit, Unit, List<JsonArticuloDescr>?>() {
 
     val dialog = ProgressDialog(ctx)
 
@@ -22,11 +22,11 @@ class UpdateArticulosDescrTask(val ctx: Context,
         dialog.show()
     }
 
-    override fun doInBackground(vararg p0: Unit?): List<ArticuloDescr>? {
-        return dataArticulos.map { ArticuloDescr(it.clave, it.descrgruma + ' ' + it.descripcio) }
+    override fun doInBackground(vararg p0: Unit?): List<JsonArticuloDescr>? {
+        return dataArticulos.map { JsonArticuloDescr(it.clave, it.descrgruma + ' ' + it.descripcio) }
     }
 
-    override fun onPostExecute(result: List<ArticuloDescr>?) {
+    override fun onPostExecute(result: List<JsonArticuloDescr>?) {
         if (dialog.isShowing) {
             dialog.dismiss()
         }

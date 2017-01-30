@@ -9,27 +9,31 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
-import siscomp.osocron.com.ordencompras.model.json.Cliente
-import siscomp.osocron.com.ordencompras.model.json.Articulo
-import siscomp.osocron.com.ordencompras.model.json.Empresas
-import siscomp.osocron.com.ordencompras.model.json.Mensaje
+import siscomp.osocron.com.ordencompras.model.json.*
 
 interface RestAPI {
 
     @GET("api/clientes")
-    fun clientes(): Call<List<Cliente>>
+    fun clientes(): Call<List<JsonCliente>>
 
     @GET("api/clientes/nuevos/{fecha}")
-    fun nuevosClientes(@Path("fecha") fecha: String): Call<List<Cliente>>
+    fun nuevosClientes(@Path("fecha") fecha: String): Call<List<JsonCliente>>
 
     @GET("api/empresas")
-    fun empresas(): Call<List<Empresas>>
+    fun empresas(): Call<List<JsonEmpresas>>
+
+    @GET("api/existencias/{clave}")
+    fun existencias(@Path("clave") clave: String): Call<JsonExistenc>
+
+    @GET("api/existencias/{clave}/{subclave}")
+    fun existenciasDetallad(@Path("clave") clave: String,
+                            @Path("subclave") subclave: String): Call<JsonExistenc>
 
     @GET("api/articulos")
-    fun articulos(): Call<List<Articulo>>
+    fun articulos(): Call<List<JsonArticulo>>
 
     @GET("api/articulos/nuevos/{fecha}")
-    fun nuevosArticulos(@Path("fecha") fecha: String): Call<List<Articulo>>
+    fun nuevosArticulos(@Path("fecha") fecha: String): Call<List<JsonArticulo>>
 
     @FormUrlEncoded
     @POST("api/login")

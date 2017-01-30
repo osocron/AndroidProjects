@@ -9,10 +9,10 @@ import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
 import siscomp.osocron.com.ordencompras.R
-import siscomp.osocron.com.ordencompras.model.json.ArticuloDescr
+import siscomp.osocron.com.ordencompras.model.json.JsonArticuloDescr
 
 
-class ArticulosDescrBaseAdapter(val data: List<ArticuloDescr>,
+class ArticulosDescrBaseAdapter(val data: List<JsonArticuloDescr>,
                                 val ctx: Context) : BaseAdapter(), Filterable {
 
     private val mInflator: LayoutInflater
@@ -33,14 +33,14 @@ class ArticulosDescrBaseAdapter(val data: List<ArticuloDescr>,
             vh = view.tag as ArticulosDescrBaseAdapter.ListRowHolder
         }
 
-        val articulo: ArticuloDescr? = try {
+        val jsonArticulo: JsonArticuloDescr? = try {
             data.get(position)
         } catch (e: Exception) {
             null
         }
 
         vh.label.text = try {
-            articulo?.descripcion
+            jsonArticulo?.descripcion
         } catch (e: Exception) {
             ""
         }

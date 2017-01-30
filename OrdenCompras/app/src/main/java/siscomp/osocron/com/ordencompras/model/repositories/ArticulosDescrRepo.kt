@@ -2,14 +2,14 @@ package siscomp.osocron.com.ordencompras.model.repositories
 
 import org.jetbrains.anko.db.*
 import siscomp.osocron.com.ordencompras.model.db.OrdenComprasDbHelper
-import siscomp.osocron.com.ordencompras.model.json.ArticuloDescr
+import siscomp.osocron.com.ordencompras.model.json.JsonArticuloDescr
 
 
-class ArticulosDescrRepo(val db: OrdenComprasDbHelper) : Repository<ArticuloDescr, String> {
+class ArticulosDescrRepo(val db: OrdenComprasDbHelper) : Repository<JsonArticuloDescr, String> {
 
-    val parser = classParser<ArticuloDescr>()
+    val parser = classParser<JsonArticuloDescr>()
 
-    override fun getAll(): List<ArticuloDescr> {
+    override fun getAll(): List<JsonArticuloDescr> {
         return db.use {
             select("ArticulosDescr").exec {
                 parseList(parser)
@@ -17,14 +17,14 @@ class ArticulosDescrRepo(val db: OrdenComprasDbHelper) : Repository<ArticuloDesc
         }
     }
 
-    fun searchQuery(s: String): List<ArticuloDescr>? {
+    fun searchQuery(s: String): List<JsonArticuloDescr>? {
         return db.use {
             val cursor = rawQuery("SELECT * FROM ArticulosDescr WHERE descripcion LIKE '%$s%' LIMIT 50", arrayOf())
-            val list: MutableList<ArticuloDescr> = mutableListOf()
+            val list: MutableList<JsonArticuloDescr> = mutableListOf()
             while (cursor.moveToNext()) {
                 val clave = cursor.getString(0)
                 val descripcion = cursor.getString(1)
-                val articuloDescr = ArticuloDescr(clave, descripcion)
+                val articuloDescr = JsonArticuloDescr(clave, descripcion)
                 list.add(articuloDescr)
             }
             cursor.close()
@@ -32,7 +32,7 @@ class ArticulosDescrRepo(val db: OrdenComprasDbHelper) : Repository<ArticuloDesc
         }
     }
 
-    override fun insert(t: ArticuloDescr): ArticuloDescr? {
+    override fun insert(t: JsonArticuloDescr): JsonArticuloDescr? {
         return db.use {
             val res = insert("ArticulosDescr",
                     "clave" to t.clave,
@@ -41,27 +41,27 @@ class ArticulosDescrRepo(val db: OrdenComprasDbHelper) : Repository<ArticuloDesc
         }
     }
 
-    override fun getById(id: String): ArticuloDescr? {
+    override fun getById(id: String): JsonArticuloDescr? {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun queryAllByPredicate(p: (ArticuloDescr) -> Boolean): List<ArticuloDescr> {
+    override fun queryAllByPredicate(p: (JsonArticuloDescr) -> Boolean): List<JsonArticuloDescr> {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun querySingleByPredicate(p: (ArticuloDescr) -> Boolean): ArticuloDescr? {
+    override fun querySingleByPredicate(p: (JsonArticuloDescr) -> Boolean): JsonArticuloDescr? {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun queryIfExists(p: (ArticuloDescr) -> Boolean): Boolean {
+    override fun queryIfExists(p: (JsonArticuloDescr) -> Boolean): Boolean {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun update(t: ArticuloDescr): ArticuloDescr? {
+    override fun update(t: JsonArticuloDescr): JsonArticuloDescr? {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun delete(id: String): ArticuloDescr? {
+    override fun delete(id: String): JsonArticuloDescr? {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

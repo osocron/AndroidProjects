@@ -44,6 +44,15 @@ class OrdenComprasDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "OrdenCo
                 "clave" to TEXT + PRIMARY_KEY,
                 "descripcion" to TEXT)
 
+        db?.createTable("Detallad", true,
+                "clave" to TEXT + PRIMARY_KEY,
+                "subclave" to TEXT,
+                "claverapid" to TEXT,
+                "barras1" to TEXT,
+                "barras2" to TEXT,
+                "barras3" to TEXT,
+                "descripcio" to TEXT)
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
