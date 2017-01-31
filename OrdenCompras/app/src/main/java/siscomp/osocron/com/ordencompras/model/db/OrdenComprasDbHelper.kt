@@ -53,6 +53,23 @@ class OrdenComprasDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "OrdenCo
                 "barras3" to TEXT,
                 "descripcio" to TEXT)
 
+        db?.execSQL("CREATE TABLE IF NOT EXISTS Existenc (empresa TEXT NOT NULL, " +
+                "clave TEXT NOT NULL, " +
+                "subclave TEXT NOT NULL, " +
+                "existenact REAL NOT NULL, " +
+                "PRIMARY KEY (empresa, clave, subclave))")
+
+        db?.execSQL("CREATE TABLE IF NOT EXISTS Precios (empresa TEXT NOT NULL, " +
+                "clave TEXT NOT NULL, " +
+                "subclave TEXT NOT NULL, " +
+                "precio1 REAL NOT NULL, " +
+                "precio2 REAL NOT NULL, " +
+                "precio3 REAL NOT NULL, " +
+                "cantidad1 INTEGER NOT NULL, " +
+                "cantidad2 INTEGER NOT NULL, " +
+                "cantidad3 INTEGER NOT NULL," +
+                "PRIMARY KEY (empresa, clave, subclave))")
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {

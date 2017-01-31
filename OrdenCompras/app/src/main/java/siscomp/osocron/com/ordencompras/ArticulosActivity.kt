@@ -11,13 +11,14 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import siscomp.osocron.com.ordencompras.adapters.ArticulosDescrBaseAdapter
-import siscomp.osocron.com.ordencompras.asyncTasks.articulosDescr.SearchArticuloDescrTask
 import siscomp.osocron.com.ordencompras.asyncTasks.articulos.UpdateArticulosTask
+import siscomp.osocron.com.ordencompras.asyncTasks.articulosDescr.SearchArticuloDescrTask
+import siscomp.osocron.com.ordencompras.asyncTasks.precios.OneTimerPreciosTask
 import siscomp.osocron.com.ordencompras.model.db.database
 import siscomp.osocron.com.ordencompras.model.json.JsonArticuloDescr
-import siscomp.osocron.com.ordencompras.model.remote.ArticulosRemoteRepo
+import siscomp.osocron.com.ordencompras.model.remote.PreciosRemoteRepo
 import siscomp.osocron.com.ordencompras.model.repositories.ArticulosDescrRepo
-import siscomp.osocron.com.ordencompras.model.repositories.ArticulosRepo
+import siscomp.osocron.com.ordencompras.model.repositories.PreciosRepo
 import siscomp.osocron.com.ordencompras.views.CustomAutoCompleteTextView
 
 class ArticulosActivity : AppCompatActivity() {
@@ -36,6 +37,8 @@ class ArticulosActivity : AppCompatActivity() {
         setUpAutoComplete()
         searchFAB.setOnClickListener { searchArticulosButtonAction() }
         //OneTimerDetalladTask(this@ArticulosActivity, DetalladRemoteRepo(this@ArticulosActivity), DetalladRepo(database)).execute()
+        //OneTimerExistencTask(this@ArticulosActivity, ExistencRemoteRepo(this@ArticulosActivity), ExistencRepo(database)).execute()
+        //OneTimerPreciosTask(this@ArticulosActivity, PreciosRemoteRepo(this@ArticulosActivity), PreciosRepo(database)).execute()
     }
 
     private fun setUpAutoComplete() {

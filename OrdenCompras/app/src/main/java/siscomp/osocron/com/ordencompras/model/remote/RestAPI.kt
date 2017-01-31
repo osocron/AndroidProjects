@@ -9,6 +9,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
+import siscomp.osocron.com.ordencompras.GlobalValues
 import siscomp.osocron.com.ordencompras.model.json.*
 
 interface RestAPI {
@@ -22,13 +23,6 @@ interface RestAPI {
     @GET("api/empresas")
     fun empresas(): Call<List<JsonEmpresas>>
 
-    @GET("api/existencias/{clave}")
-    fun existencias(@Path("clave") clave: String): Call<JsonExistenc>
-
-    @GET("api/existencias/{clave}/{subclave}")
-    fun existenciasDetallad(@Path("clave") clave: String,
-                            @Path("subclave") subclave: String): Call<JsonExistenc>
-
     @GET("api/articulos")
     fun articulos(): Call<List<JsonArticulo>>
 
@@ -40,6 +34,24 @@ interface RestAPI {
 
     @GET("api/detallados/{clave}")
     fun detalladosPorClave(@Path("clave") clave: String): Call<List<JsonDetallad>>
+
+    @GET("api/existencias/{empresa}")
+    fun existencias(@Path("empresa") empresa: String): Call<List<JsonExistenc>>
+
+    @GET("api/existencias/{empresa}/{clave}")
+    fun existenciasPorClave(@Path("empresa") empresa: String,
+                            @Path("clave") clave: String): Call<List<JsonExistenc>>
+
+    @GET("api/existencias/{empresa}/{clave}/{subclave}")
+    fun existenciasDetallad(@Path("empresa") empresa: String,
+                            @Path("clave") clave: String,
+                            @Path("subclave") subclave: String): Call<JsonExistenc>
+
+    @GET("api/precios" + GlobalValues.PRECIOS + "/{clave}")
+    fun preciosPorClave(@Path("clave") clave: String): Call<List<JsonPrecios>>
+
+    @GET("api/precios" + GlobalValues.PRECIOS)
+    fun precios(): Call<List<JsonPrecios>>
 
     @FormUrlEncoded
     @POST("api/login")
