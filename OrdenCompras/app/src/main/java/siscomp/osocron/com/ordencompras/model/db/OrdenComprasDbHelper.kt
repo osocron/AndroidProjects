@@ -33,7 +33,7 @@ class OrdenComprasDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "OrdenCo
                 "claverapid" to TEXT,
                 "barras1" to TEXT,
                 "barras2" to TEXT,
-                "barras2" to TEXT,
+                "barras3" to TEXT,
                 "gravado" to INTEGER,
                 "descrgruma" to TEXT,
                 "descripcio" to TEXT,
@@ -44,14 +44,14 @@ class OrdenComprasDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "OrdenCo
                 "clave" to TEXT + PRIMARY_KEY,
                 "descripcion" to TEXT)
 
-        db?.createTable("Detallad", true,
-                "clave" to TEXT + PRIMARY_KEY,
-                "subclave" to TEXT,
-                "claverapid" to TEXT,
-                "barras1" to TEXT,
-                "barras2" to TEXT,
-                "barras3" to TEXT,
-                "descripcio" to TEXT)
+        db?.execSQL("CREATE TABLE IF NOT EXISTS Detallad (clave TEXT NOT NULL, " +
+                "subclave TEXT NOT NULL, " +
+                "claverapid TEXT NOT NULL, " +
+                "barras1 TEXT NOT NULL, " +
+                "barras2 TEXT NOT NULL, " +
+                "barras3 TEXT NOT NULL, " +
+                "descripcio TEXT NOT NULL," +
+                "PRIMARY KEY (clave, subclave))")
 
         db?.execSQL("CREATE TABLE IF NOT EXISTS Existenc (empresa TEXT NOT NULL, " +
                 "clave TEXT NOT NULL, " +

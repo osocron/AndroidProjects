@@ -6,7 +6,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
-import org.jetbrains.anko.db.*
 import siscomp.osocron.com.ordencompras.adapters.ClientesBaseAdapter
 import siscomp.osocron.com.ordencompras.asyncTasks.clientes.SearchClienteTask
 import siscomp.osocron.com.ordencompras.asyncTasks.clientes.UpdateClientTask
@@ -27,6 +26,12 @@ class ClientesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_clientes)
         setUpAutoComplete()
+        //OneTimerClienteTask(this@ClientesActivity, ClienteRemoteRepo(this@ClientesActivity), ClientesRepo(database)).execute()
+        //OneTimerArticulosTask(this@ClientesActivity, ArticulosRemoteRepo(this@ClientesActivity), ArticulosRepo(database)).execute()
+        //OneTimerArticulosDescrTask(this@ClientesActivity, ArticulosDescrRepo(database)).execute()
+        //OneTimerDetalladTask(this@ClientesActivity, DetalladRemoteRepo(this@ClientesActivity), DetalladRepo(database)).execute()
+        //OneTimerExistencTask(this@ClientesActivity, ExistencRemoteRepo(this@ClientesActivity), ExistencRepo(database)).execute()
+        //OneTimerPreciosTask(this@ClientesActivity, PreciosRemoteRepo(this@ClientesActivity), PreciosRepo(database)).execute()
     }
 
     private fun setUpAutoComplete() {

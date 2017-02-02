@@ -9,6 +9,8 @@ import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
 import siscomp.osocron.com.ordencompras.R
+import siscomp.osocron.com.ordencompras.asyncTasks.articulos.SearchArticulosInfoTask
+import siscomp.osocron.com.ordencompras.model.db.OrdenComprasDbHelper
 import siscomp.osocron.com.ordencompras.model.json.JsonArticuloDescr
 
 
@@ -43,6 +45,10 @@ class ArticulosDescrBaseAdapter(val data: List<JsonArticuloDescr>,
             jsonArticulo?.descripcion
         } catch (e: Exception) {
             ""
+        }
+
+        view?.setOnClickListener {
+            SearchArticulosInfoTask(view.context, OrdenComprasDbHelper(view.context), jsonArticulo?.clave).execute()
         }
 
         return view

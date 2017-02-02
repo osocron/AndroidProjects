@@ -21,7 +21,7 @@ import java.util.*
 
 
 class UpdateArticulosDataTask(val ctx: Context,
-                              val database: OrdenComprasDbHelper) : AsyncTask<Unit, Unit, Unit>() {
+                              database: OrdenComprasDbHelper) : AsyncTask<Unit, Unit, Unit>() {
 
     val dialog = ProgressDialog(ctx)
     val remoteArticulosRepo = ArticulosRemoteRepo(ctx)

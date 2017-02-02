@@ -1,6 +1,7 @@
 package siscomp.osocron.com.ordencompras
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -11,14 +12,12 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import siscomp.osocron.com.ordencompras.adapters.ArticulosDescrBaseAdapter
-import siscomp.osocron.com.ordencompras.asyncTasks.articulos.UpdateArticulosTask
+import siscomp.osocron.com.ordencompras.asyncTasks.articulos.SearchArticulosInfoTask
+import siscomp.osocron.com.ordencompras.asyncTasks.articulos.UpdateArticulosDataTask
 import siscomp.osocron.com.ordencompras.asyncTasks.articulosDescr.SearchArticuloDescrTask
-import siscomp.osocron.com.ordencompras.asyncTasks.precios.OneTimerPreciosTask
 import siscomp.osocron.com.ordencompras.model.db.database
 import siscomp.osocron.com.ordencompras.model.json.JsonArticuloDescr
-import siscomp.osocron.com.ordencompras.model.remote.PreciosRemoteRepo
 import siscomp.osocron.com.ordencompras.model.repositories.ArticulosDescrRepo
-import siscomp.osocron.com.ordencompras.model.repositories.PreciosRepo
 import siscomp.osocron.com.ordencompras.views.CustomAutoCompleteTextView
 
 class ArticulosActivity : AppCompatActivity() {
@@ -36,9 +35,6 @@ class ArticulosActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setUpAutoComplete()
         searchFAB.setOnClickListener { searchArticulosButtonAction() }
-        //OneTimerDetalladTask(this@ArticulosActivity, DetalladRemoteRepo(this@ArticulosActivity), DetalladRepo(database)).execute()
-        //OneTimerExistencTask(this@ArticulosActivity, ExistencRemoteRepo(this@ArticulosActivity), ExistencRepo(database)).execute()
-        //OneTimerPreciosTask(this@ArticulosActivity, PreciosRemoteRepo(this@ArticulosActivity), PreciosRepo(database)).execute()
     }
 
     private fun setUpAutoComplete() {
@@ -90,7 +86,7 @@ class ArticulosActivity : AppCompatActivity() {
     }
 
     private fun updateArticulos() {
-        val task = UpdateArticulosTask(this, database)
+        val task = UpdateArticulosDataTask(this, database)
         task.execute()
     }
 
@@ -103,8 +99,7 @@ class ArticulosActivity : AppCompatActivity() {
     }
 
     private fun startSearch(code: String) {
-        //TODO implement search
-        Toast.makeText(this@ArticulosActivity, code, Toast.LENGTH_LONG).show()
+        SearchArticulosInfoTask(this@ArticulosActivity, database, code).execute()
     }
 
     private fun scanArticulo() {
