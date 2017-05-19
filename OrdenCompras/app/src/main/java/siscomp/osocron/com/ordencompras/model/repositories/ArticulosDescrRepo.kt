@@ -45,18 +45,6 @@ class ArticulosDescrRepo(val db: OrdenComprasDbHelper) : Repository<JsonArticulo
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun queryAllByPredicate(p: (JsonArticuloDescr) -> Boolean): List<JsonArticuloDescr> {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun querySingleByPredicate(p: (JsonArticuloDescr) -> Boolean): JsonArticuloDescr? {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun queryIfExists(p: (JsonArticuloDescr) -> Boolean): Boolean {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun update(t: JsonArticuloDescr): JsonArticuloDescr? {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

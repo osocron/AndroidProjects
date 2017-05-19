@@ -20,11 +20,17 @@ interface RestAPI {
     @GET("api/clientes/nuevos/{fecha}")
     fun nuevosClientes(@Path("fecha") fecha: String): Call<List<JsonCliente>>
 
+    @GET("api/clientes/like/{s}")
+    fun clienteLikeString(@Path("s") s: String): Call<List<JsonCliente>>
+
     @GET("api/empresas")
     fun empresas(): Call<List<JsonEmpresas>>
 
     @GET("api/articulos")
     fun articulos(): Call<List<JsonArticulo>>
+
+    @GET("api/articulos/barras/{nobarras}")
+    fun articulosPorBarras(@Path("nobarras") barras: String): Call<JsonArticulo>
 
     @GET("api/articulos/nuevos/{fecha}")
     fun nuevosArticulos(@Path("fecha") fecha: String): Call<List<JsonArticulo>>
@@ -34,6 +40,10 @@ interface RestAPI {
 
     @GET("api/detallados/{clave}")
     fun detalladosPorClave(@Path("clave") clave: String): Call<List<JsonDetallad>>
+
+    @GET("api/detallados/{clave}/{subclave}")
+    fun detalladoPorClaveSubclave(@Path("clave") clave: String,
+                                  @Path("subclave") subclave: String): Call<JsonDetallad>
 
     @GET("api/existencias/{empresa}")
     fun existencias(@Path("empresa") empresa: String): Call<List<JsonExistenc>>
@@ -47,17 +57,22 @@ interface RestAPI {
                             @Path("clave") clave: String,
                             @Path("subclave") subclave: String): Call<JsonExistenc>
 
+    @GET("api/precios" + GlobalValues.PRECIOS)
+    fun precios(): Call<List<JsonPrecios>>
+
     @GET("api/precios" + GlobalValues.PRECIOS + "/{clave}")
     fun preciosPorClave(@Path("clave") clave: String): Call<List<JsonPrecios>>
 
-    @GET("api/precios" + GlobalValues.PRECIOS)
-    fun precios(): Call<List<JsonPrecios>>
+    @GET("api/precios" + GlobalValues.PRECIOS + "/{clave}/{subclave}")
+    fun preciosPorClaveSubclave(@Path("clave") clave: String,
+                                @Path("subclave") subclave: String): Call<JsonPrecios>
 
     @FormUrlEncoded
     @POST("api/login")
     fun login(@Field("empresa") empresa: String,
               @Field("clave") clave: String,
               @Field("nombre") nombre: String) : Call<Mensaje>
+
 
     object Factory {
         fun getIstance(context: Context): RestAPI {

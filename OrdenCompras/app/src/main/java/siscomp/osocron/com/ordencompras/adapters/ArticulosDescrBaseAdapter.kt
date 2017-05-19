@@ -48,7 +48,9 @@ class ArticulosDescrBaseAdapter(val data: List<JsonArticuloDescr>,
         }
 
         view?.setOnClickListener {
-            SearchArticulosInfoTask(view.context, OrdenComprasDbHelper(view.context), jsonArticulo?.clave).execute()
+            if (jsonArticulo != null) {
+                SearchArticulosInfoTask(view.context, OrdenComprasDbHelper(view.context), jsonArticulo.clave).execute()
+            }
         }
 
         return view

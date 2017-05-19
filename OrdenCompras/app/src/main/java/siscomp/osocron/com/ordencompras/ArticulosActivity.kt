@@ -11,6 +11,7 @@ import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import org.jetbrains.anko.toast
 import siscomp.osocron.com.ordencompras.adapters.ArticulosDescrBaseAdapter
 import siscomp.osocron.com.ordencompras.asyncTasks.articulos.SearchArticulosInfoTask
 import siscomp.osocron.com.ordencompras.asyncTasks.articulos.UpdateArticulosDataTask
@@ -94,12 +95,13 @@ class ArticulosActivity : AppCompatActivity() {
         if (validateInput()) {
             startSearch(autoComplete.text.toString())
         } else {
-            Toast.makeText(this@ArticulosActivity, "Codigo no válido!", Toast.LENGTH_LONG).show()
+            toast("Codigo no válido!")
         }
     }
 
     private fun startSearch(code: String) {
         SearchArticulosInfoTask(this@ArticulosActivity, database, code).execute()
+
     }
 
     private fun scanArticulo() {
@@ -116,7 +118,7 @@ class ArticulosActivity : AppCompatActivity() {
     private fun validateInput(): Boolean {
         return autoComplete.text.isNotEmpty() &&
                 isNumeric(autoComplete.text) &&
-                autoComplete.text.length >= 8
+                autoComplete.text.length > 4
     }
 
     private fun isNumeric(text: CharSequence): Boolean {

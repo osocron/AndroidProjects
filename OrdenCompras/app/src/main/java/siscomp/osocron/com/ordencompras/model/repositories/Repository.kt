@@ -6,12 +6,6 @@ interface Repository<T, I> {
 
     fun getById(id: I): T?
 
-    fun queryAllByPredicate(p: (T) -> Boolean): List<T>
-
-    fun querySingleByPredicate(p: (T) -> Boolean): T?
-
-    fun queryIfExists(p: (T) -> Boolean): Boolean
-
     fun insert(t: T): T?
 
     fun update(t: T): T?

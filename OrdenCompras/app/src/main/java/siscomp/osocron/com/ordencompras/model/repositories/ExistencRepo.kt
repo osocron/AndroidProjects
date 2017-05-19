@@ -26,18 +26,6 @@ class ExistencRepo(val db: OrdenComprasDbHelper) : Repository<Existenc, String> 
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun queryAllByPredicate(p: (Existenc) -> Boolean): List<Existenc> {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun querySingleByPredicate(p: (Existenc) -> Boolean): Existenc? {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun queryIfExists(p: (Existenc) -> Boolean): Boolean {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun update(t: Existenc): Existenc? {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

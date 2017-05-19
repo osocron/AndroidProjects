@@ -31,18 +31,6 @@ class PreciosRepo(val db: OrdenComprasDbHelper) : Repository<Precios, String> {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun queryAllByPredicate(p: (Precios) -> Boolean): List<Precios> {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun querySingleByPredicate(p: (Precios) -> Boolean): Precios? {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun queryIfExists(p: (Precios) -> Boolean): Boolean {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun update(t: Precios): Precios? {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

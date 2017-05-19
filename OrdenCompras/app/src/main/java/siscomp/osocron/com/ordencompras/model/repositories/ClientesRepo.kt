@@ -55,18 +55,6 @@ class ClientesRepo(val db: OrdenComprasDbHelper) : Repository<Cliente, String> {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun queryAllByPredicate(p: (Cliente) -> Boolean): List<Cliente> {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun querySingleByPredicate(p: (Cliente) -> Boolean): Cliente? {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun queryIfExists(p: (Cliente) -> Boolean): Boolean {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun update(t: Cliente): Cliente? {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

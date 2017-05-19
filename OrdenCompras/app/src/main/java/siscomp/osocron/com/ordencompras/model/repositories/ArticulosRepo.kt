@@ -32,20 +32,22 @@ class ArticulosRepo(val db: OrdenComprasDbHelper) : Repository<Articulo, String>
         }
     }
 
+    fun getByCodigoBarras(codigo: String): Articulo? {
+        return db.use {
+            select("Articulos").where("(barras1 = {barras}) or (barras2 = {barras}) or (barras3 = {barras})",
+                    "barras" to codigo).exec {
+                parseOpt(articuloParser)
+            }
+        }
+    }
+
     override fun getById(id: String): Articulo? {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun queryAllByPredicate(p: (Articulo) -> Boolean): List<Articulo> {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun querySingleByPredicate(p: (Articulo) -> Boolean): Articulo? {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun queryIfExists(p: (Articulo) -> Boolean): Boolean {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return db.use {
+            select("Articulos").where("(clave = {id})",
+                    "id" to id).exec {
+                parseOpt(articuloParser)
+            }
+        }
     }
 
     override fun update(t: Articulo): Articulo? {
